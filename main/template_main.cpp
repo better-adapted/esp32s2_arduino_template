@@ -13,11 +13,35 @@
 #include "esp_flash.h"
 #include "esp_system.h"
 
+#define GPIO_NEOPIXEL 38
+
+#ifdef GPIO_NEOPIXEL
+#include <Adafruit_NeoPixel.h>
+Adafruit_NeoPixel pixels(1, GPIO_NEOPIXEL, NEO_GRB + NEO_KHZ800);
+#endif
+
 void setup(void)
 {
 	Serial.begin(115200);
 	
-    Serial.printf("Hello world!\n");
+#ifdef GPIO_NEOPIXEL
+	pixels.setPixelColor(0, pixels.Color(250, 0, 0)); // setup()
+	pixels.show();									  // setup()
+	delay(200);
+	pixels.setPixelColor(0, pixels.Color(0, 250, 0)); // setup()
+	pixels.show();									  // setup()
+	delay(200);
+	pixels.setPixelColor(0, pixels.Color(0, 0, 250)); // setup()
+	pixels.show();									  // setup()
+	delay(200);
+	pixels.setPixelColor(0, pixels.Color(0, 0, 0)); // setup()
+	pixels.show();									// setup()
+	delay(200);
+#endif	
+	
+    Serial.println();
+	Serial.println("Hello world!");
+    Serial.println();
 
     /* Print chip information */
     esp_chip_info_t chip_info;

@@ -1,3 +1,3 @@
 idf_component_register(SRCS "template_main.cpp"
-                    PRIV_REQUIRES spi_flash arduino
+                    PRIV_REQUIRES spi_flash arduino Adafruit_NeoPixel
                     INCLUDE_DIRS "")
